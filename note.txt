@@ -1,0 +1,30 @@
+Request
+   ↓
+express.json()
+   ↓
+jobRoutes
+   ↓
+authMiddleware
+   ↓
+createJob
+   ↓
+ERROR OCCURS
+   ↓
+errorMiddleware
+   ↓
+Response
+
+
+//...............................how error middleware works -------------
+
+Controller
+    ↓
+throw AppError
+    ↓
+catch
+    ↓
+next(error)
+    ↓
+errorMiddleware
+    ↓
+HTTP response
