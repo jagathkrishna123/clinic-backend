@@ -9,11 +9,6 @@ export const register = async (req, res) => {
 
     const { name, email, password } = req.body;
 
-    // Check required data
-    if (!name || !email || !password) {
-        throw new AppError("All fields are required", 400);
-    }
-
     // Check duplicate email
     const existingUser = await User.findOne({ email });
 
@@ -47,13 +42,6 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
 
     const { email, password } = req.body;
-
-    if (!email || !password) {
-        throw new AppError(
-            "Email and password are required",
-            400
-        );
-    }
 
     const user = await User.findOne({ email });
 
