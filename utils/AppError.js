@@ -6,3 +6,5 @@ class AppError extends Error {
 }
 
 export default AppError;
+
+// to throw an error

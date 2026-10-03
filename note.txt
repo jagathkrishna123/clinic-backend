@@ -43,3 +43,8 @@ middleware/authMiddleware.js —--->> Reads the JWT from the request, verifies i
 validators/authValidator.js —--->> Contains the rules for what valid register/login data should look like.
 utils/AppError.js —--->> Custom error class that lets us throw an error with both a message and HTTP status code, e.g. 404.
 utils/asyncHandler.js —--->> Wraps async controllers and automatically forwards errors to errorMiddleware, so we don't need repetitive try/catch blocks.
+
+
+middleware/
+├── authMiddleware.js       ← Is the user logged in?
+└── authorizeMiddleware.js  ← Is the user allowed?
