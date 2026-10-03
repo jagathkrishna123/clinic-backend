@@ -1,12 +1,6 @@
 import express from "express";
 
-import {
-    createDoctor,
-    getDoctors,
-    getDoctor,
-    updateDoctor,
-    deleteDoctor
-} from "../controllers/doctorController.js";
+import { createDoctor, getDoctors, getDoctor, updateDoctor, deleteDoctor } from "../controllers/doctorController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
 import authorize from "../middleware/authorizeMiddleware.js";
@@ -19,19 +13,11 @@ const router = express.Router();
 
 
 // Anyone logged in can view doctors
-router.get(
-    "/",
-    authMiddleware,
-    asyncHandler(getDoctors)
-);
+router.get( "/", authMiddleware, asyncHandler(getDoctors));
 
 
 // Anyone logged in can view one doctor
-router.get(
-    "/:id",
-    authMiddleware,
-    asyncHandler(getDoctor)
-);
+router.get( "/:id", authMiddleware, asyncHandler(getDoctor));
 
 
 // Only admin can create doctor
