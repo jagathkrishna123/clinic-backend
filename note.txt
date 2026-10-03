@@ -15,7 +15,7 @@ errorMiddleware
 Response
 
 
-//...............................how error middleware works -------------
+//.................how error middleware works -------------
 
 Controller
     ↓
@@ -28,3 +28,18 @@ next(error)
 errorMiddleware
     ↓
 HTTP response
+
+//..................................................................................
+
+config/db.js —---> Connects the Express application to MongoDB using the MONGO_URI from .env.
+models/User.js —--->> Defines the User schema: name, email, password, and role.
+controllers/authController.js —--->> Contains the actual register and login business logic, including password hashing and JWT creation.
+controllers/userController.js —--->> Contains logic for user-related APIs, currently getting the logged-in user's profile.
+routes/authRoutes.js —--->> Defines authentication endpoints like /register and /login, and attaches validation/error handling.
+routes/userRoutes.js —--->> Defines protected user endpoints like /me.
+middleware/errorMiddleware.js —--->> One central place that receives errors and sends the proper HTTP error response.
+middleware/validate.js —--->> Reusable middleware that checks req.body against a Zod schema before reaching the controller.
+middleware/authMiddleware.js —--->> Reads the JWT from the request, verifies it, and puts the user's userId and role into req.user.
+validators/authValidator.js —--->> Contains the rules for what valid register/login data should look like.
+utils/AppError.js —--->> Custom error class that lets us throw an error with both a message and HTTP status code, e.g. 404.
+utils/asyncHandler.js —--->> Wraps async controllers and automatically forwards errors to errorMiddleware, so we don't need repetitive try/catch blocks.
